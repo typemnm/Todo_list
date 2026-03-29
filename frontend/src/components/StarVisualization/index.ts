@@ -1,0 +1,1 @@
+export { StarVisualization } from './StarVisualization';

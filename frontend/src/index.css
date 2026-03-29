@@ -1,10 +1,26 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-background: #111417;
+  --color-on-background: #e1e2e7;
+  --color-primary: #ccc6b4;
+  --color-on-primary: #333124;
+  --color-secondary: #bdc2ff;
+  --color-tertiary: #d8bbf4;
+  --color-error: #ffb4ab;
+  --color-surface: #111417;
+  --color-on-surface: #e1e2e7;
+  
+  --font-family-headline: "Manrope", sans-serif;
+  --font-family-body: "Inter", sans-serif;
+  --font-family-label: "Space Grotesk", sans-serif;
+}
 
 @layer base {
   body {
-    @apply bg-background text-on-background font-body;
+    background-color: var(--color-background);
+    color: var(--color-on-background);
+    font-family: var(--font-family-body);
     margin: 0;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -13,22 +29,15 @@
   }
 
   #root {
-    @apply min-h-screen;
-  }
-
-  /* Material Symbols Icon Configuration */
-  .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    min-height: 100vh;
   }
 }
 
 @layer utilities {
-  /* Star Glow Effect */
   .star-glow {
     box-shadow: 0 0 20px 2px rgba(204, 198, 180, 0.4);
   }
 
-  /* Nebula Background Effect */
   .nebula-bg {
     background: radial-gradient(circle at 50% 50%, rgba(27, 36, 127, 0.15) 0%, transparent 70%);
   }
