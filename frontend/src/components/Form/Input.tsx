@@ -6,6 +6,7 @@ export interface InputProps {
   placeholder?: string;
   maxLength?: number;
   error?: string;
+  type?: 'text' | 'password' | 'email';
 }
 
 export const Input: React.FC<InputProps> = ({
@@ -14,6 +15,7 @@ export const Input: React.FC<InputProps> = ({
   placeholder,
   maxLength,
   error,
+  type = 'text',
 }) => {
   return (
     <div className="w-full relative">
@@ -23,7 +25,7 @@ export const Input: React.FC<InputProps> = ({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         maxLength={maxLength}
-        type="text"
+        type={type}
       />
       {error && (
         <span className="text-error text-sm mt-1 block text-center">

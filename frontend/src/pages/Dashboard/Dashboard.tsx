@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom';
 import { useTodos } from '../../hooks/useTodos';
+import { useSettings } from '../../hooks/useSettings';
 import { Layout } from '../../components/Layout';
 import { StarVisualization } from '../../components/StarVisualization';
 
 export default function Dashboard() {
   const { todos, isLoading, error } = useTodos();
+  const { settings } = useSettings();
 
   if (isLoading) {
     return (
@@ -32,9 +34,8 @@ export default function Dashboard() {
   const totalCount = todos.length;
   const completedCount = todos.filter(t => t.completed).length;
   const pendingCount = totalCount - completedCount;
-  
-  // A simple way to determine recent activity based on the current todo count or if there are any
-  const recentActivity = totalCount > 0 
+
+  const recentActivity = totalCount > 0
     ? `Tracking ${totalCount} celestial bodies. ${completedCount} objectives achieved.`
     : null;
 
@@ -48,7 +49,7 @@ export default function Dashboard() {
       </section>
 
       <section className="relative w-full h-[50vh] md:h-[60vh] min-h-[400px]">
-        <StarVisualization todos={todos} />
+        <StarVisualization todos={todos} settings={settings} />
       </section>
 
       <section className="px-8 md:px-12 pb-24 md:pb-12 mt-8 relative z-10">
@@ -60,7 +61,6 @@ export default function Dashboard() {
             </div>
             <span className="text-3xl font-headline font-bold text-primary">{totalCount}</span>
           </div>
-
           <div className="bg-surface-container-low p-6 rounded-3xl border border-outline-variant/10 backdrop-blur-md">
             <div className="flex items-center gap-3 mb-4">
               <span className="material-symbols-outlined text-success">task_alt</span>
@@ -68,7 +68,6 @@ export default function Dashboard() {
             </div>
             <span className="text-3xl font-headline font-bold text-success">{completedCount}</span>
           </div>
-
           <div className="bg-surface-container-low p-6 rounded-3xl border border-outline-variant/10 backdrop-blur-md">
             <div className="flex items-center gap-3 mb-4">
               <span className="material-symbols-outlined text-secondary">pending</span>
@@ -84,12 +83,12 @@ export default function Dashboard() {
             <h3 className="font-headline font-bold text-on-surface">Celestial Events</h3>
           </div>
           <p className="text-sm text-on-surface-variant/70 leading-relaxed">
-            {recentActivity || "No recent stellar activity detected."}
+            {recentActivity || 'No recent stellar activity detected.'}
           </p>
         </div>
       </section>
 
-      <Link 
+      <Link
         to="/add"
         aria-label="add"
         className="fixed bottom-[100px] md:bottom-8 right-8 w-14 h-14 bg-primary text-on-primary rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(204,198,180,0.3)] hover:scale-105 transition-transform duration-300 z-50"

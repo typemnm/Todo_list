@@ -32,7 +32,7 @@ test.describe('Navigation', () => {
 
   test('should render Add Todo page', async ({ page }) => {
     await page.goto('/add');
-    await expect(page.locator('text=New Stellar Object')).toBeVisible();
+    await expect(page.locator('text=Place a New Star')).toBeVisible();
   });
 });
 
