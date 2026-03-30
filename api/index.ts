@@ -18,14 +18,21 @@ app.use(cors({
 }));
 app.use(express.json());
 
-const TodoSchema = new mongoose.Schema({
+interface ITodo {
+  title: string;
+  completed: boolean;
+  priority: 'low' | 'medium' | 'high';
+  createdAt: Date;
+}
+
+const TodoSchema = new mongoose.Schema<ITodo>({
   title: { type: String, required: true, maxlength: 200 },
   completed: { type: Boolean, default: false },
   priority: { type: String, enum: ['low', 'medium', 'high'], default: 'medium' },
   createdAt: { type: Date, default: Date.now },
 });
 
-const Todo = mongoose.models.Todo || mongoose.model('Todo', TodoSchema);
+const Todo = (mongoose.models['Todo'] as mongoose.Model<ITodo>) || mongoose.model<ITodo>('Todo', TodoSchema);
 
 let isConnected = false;
 
