@@ -35,3 +35,4 @@ Thumbs.db
 # Tool state (not for versioning)
 .sisyphus/
 .omc/
+.vercel

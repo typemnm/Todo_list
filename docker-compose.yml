@@ -3,7 +3,7 @@ services:
     image: mongo:7
     restart: unless-stopped
     environment:
-      MONGO_INITDB_DATABASE: stellar-observer
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
     volumes:
       - mongodb_data:/data/db
     ports:
@@ -17,8 +17,8 @@ services:
     env_file:
       - ./backend/.env
     environment:
-      NODE_ENV: production
-      MONGODB_URI: mongodb://mongodb:27017/stellar-observer
+      NODE_ENV: ${NODE_ENV}
+      MONGODB_URI: ${MONGODB_URI}
     ports:
       - "3000:3000"
     depends_on:
